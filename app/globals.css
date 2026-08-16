@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic",
+    sans-serif;
+  background: #f5f6f8;
+  color: #1c1c1e;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="datetime-local"],
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d8d8dc;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  background: #1c1c1e;
+  color: #fff;
+  width: 100%;
+  margin-top: 18px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: #eee;
+  color: #1c1c1e;
+}
+
+button.danger {
+  background: #fff0f0;
+  color: #c0392b;
+}
+
+.row {
+  display: flex;
+  gap: 8px;
+}
+
+.error {
+  color: #c0392b;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.muted {
+  color: #777;
+  font-size: 13px;
+}
+
+.link-box {
+  background: #f5f6f8;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  word-break: break-all;
+  margin-top: 10px;
+}
+
+.reservation-item {
+  border-top: 1px solid #eee;
+  padding: 14px 0;
+}
+
+.reservation-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef7ee;
+  color: #2e7d32;
+}
+
+.badge.pending {
+  background: #fdf3e6;
+  color: #b5720a;
+}
+
+.badge.cancelled {
+  background: #fdeaea;
+  color: #c0392b;
+}
+
+a {
+  color: #1c1c1e;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.checkbox-row input {
+  margin-top: 3px;
+}
+
+.checkbox-row label {
+  margin: 0;
+  font-size: 14px;
+  color: #1c1c1e;
+}
