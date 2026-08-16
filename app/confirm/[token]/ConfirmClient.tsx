@@ -57,10 +57,10 @@ export default function ConfirmClient({
       {location && <p className="muted" style={{ fontSize: 13, marginTop: 0 }}>{location}</p>}
 
       {consented ? (
-        <p className="muted">확인 및 개인정보 수집·이용 동의가 완료되었습니다. 감사합니다.</p>
+        <p className="muted">확인이 완료되었습니다. 감사합니다.</p>
       ) : (
         <>
-          <p className="muted">예약 시간 6시간 전까지 확인하지 않으면 예약이 취소될 수 있습니다.</p>
+          <p className="muted">예약 시간 6시간 전까지 미확인 시 예약이 취소될 수 있습니다.</p>
           <div className="checkbox-row">
             <input
               id="consent"
