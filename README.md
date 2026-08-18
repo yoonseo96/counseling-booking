@@ -19,7 +19,9 @@ create table reservations (
   status text not null default 'confirmed' check (status in ('confirmed', 'cancelled')),
   consented boolean not null default false,
   consented_at timestamptz,
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  created_by text,
+  cancelled_by text
 );
 
 -- 서버(service role 키)에서만 접근하고 클라이언트는 직접 접근하지 않으므로
@@ -39,8 +41,8 @@ alter table reservations enable row level security;
 cp .env.local.example .env.local
 ```
 
-- `ADMIN_PASSWORD`: 관리자 페이지 로그인 비밀번호 (본인만 아는 값)
-- `ADMIN_SESSION_TOKEN`, `CRON_SECRET`: 아래 명령으로 랜덤 문자열을 생성해서 각각 다르게 넣으세요.
+- `ADMIN_USERS`: 관리자 이름·비밀번호 목록 (JSON). 관리자별로 로그인이 분리되고, 각자 본인이 만든 예약만 볼 수 있습니다.
+- `ADMIN_SESSION_SECRET`, `CRON_SECRET`: 아래 명령으로 랜덤 문자열을 생성해서 각각 다르게 넣으세요.
 
 ```bash
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
@@ -62,8 +64,8 @@ npm run dev
 3. **Environment Variables** 에 `.env.local`에 넣었던 값들을 동일하게 등록
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY`
-   - `ADMIN_PASSWORD`
-   - `ADMIN_SESSION_TOKEN`
+   - `ADMIN_USERS`
+   - `ADMIN_SESSION_SECRET`
    - `CRON_SECRET`
    - `RETENTION_DAYS` (예: `90`)
 4. Deploy. 배포되면 `https://프로젝트명.vercel.app` 주소가 생기고 자동으로 HTTPS가 적용됩니다.
@@ -79,7 +81,13 @@ npm run dev
 4. 고객이 링크를 열어 이름·일시 확인 후 동의 체크박스 → "예약 확인" 클릭
 5. `/admin`의 예약 목록에서 "동의 완료" 여부 확인 가능. 취소 시 "취소 처리", 완전히 지우려면 "완전 삭제"
 
-## 6. 참고
+## 6. 관리자 2인 이상 운영
+
+- `ADMIN_USERS`에 이름·비밀번호를 추가하면 인원을 늘릴 수 있습니다.
+- 각 관리자는 로그인 비밀번호로 서로 구분되고, `/admin`에서는 **본인이 만든 예약만** 보이고 취소·삭제도 본인 것만 가능합니다 (다른 관리자의 상담 내역은 API로 직접 요청해도 조회되지 않습니다).
+- 특정 인원의 접근을 막고 싶으면 `ADMIN_USERS`에서 그 사람 항목만 지우고 재배포하면 됩니다. 그 사람이 만든 예약은 삭제되지 않고 남아있습니다 (다만 그 예약을 만든 사람이 없어졌으므로 관리자 화면에서 아무도 못 보게 됩니다 — 필요하면 Supabase Table Editor에서 직접 확인/이관하세요).
+
+## 7. 참고
 
 - `/privacy` 페이지의 담당자 정보는 [app/privacy/page.tsx](app/privacy/page.tsx)에 반영되어 있습니다. 정보가 바뀌면 이 파일만 수정하면 됩니다.
 - 저는 변호사가 아니라 법적 판단(민감정보 해당 여부 등)이 필요하면 개인정보보호위원회(privacy.go.kr) 상담이나 전문가 확인을 받는 걸 권장합니다.

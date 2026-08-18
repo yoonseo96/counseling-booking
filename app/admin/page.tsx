@@ -27,6 +27,14 @@ export default function AdminPage() {
   const [error, setError] = useState("");
   const [newLink, setNewLink] = useState("");
   const [loadError, setLoadError] = useState("");
+  const [adminName, setAdminName] = useState("");
+
+  useEffect(() => {
+    fetch("/api/admin/me")
+      .then((res) => res.json())
+      .then((data) => setAdminName(data.name ?? ""))
+      .catch(() => {});
+  }, []);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -111,6 +119,7 @@ export default function AdminPage() {
         <div className="row" style={{ justifyContent: "space-between", alignItems: "center" }}>
           <h1 style={{ marginBottom: 0 }}>예약 관리</h1>
         </div>
+        {adminName && <p className="muted">{adminName} 님으로 로그인됨 (본인이 만든 예약만 보여요)</p>}
         <button className="secondary" onClick={handleLogout}>
           로그아웃
         </button>
