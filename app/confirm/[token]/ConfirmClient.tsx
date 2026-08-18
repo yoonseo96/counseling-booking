@@ -61,12 +61,8 @@ export default function ConfirmClient({
       ) : (
         <>
           <ol className="notice-list">
-            <li>
-              <strong>바우처카드</strong>를 꼭 지참해주세요.
-            </li>
-            <li>
-              <strong>당일취소는 불가합니다.</strong>
-            </li>
+            <li>바우처카드를 꼭 지참해주세요.</li>
+            <li>당일취소는 불가합니다.</li>
           </ol>
           <div className="checkbox-row">
             <input
