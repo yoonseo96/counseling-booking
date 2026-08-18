@@ -248,7 +248,7 @@ export default function AdminPage() {
                     <span
                       className={`badge ${r.status === "cancelled" ? "cancelled" : r.consented ? "" : "pending"}`}
                     >
-                      {r.status === "cancelled" ? "취소됨" : r.consented ? "동의 완료" : "확인 대기"}
+                      {r.status === "cancelled" ? "취소됨" : r.consented ? "확인 완료" : "확인 대기"}
                     </span>
                   </div>
                   <p className="muted">
