@@ -27,7 +27,6 @@ export default function ConfirmClient({
   location: string | null;
   initialConsented: boolean;
 }) {
-  const [checked, setChecked] = useState(false);
   const [consented, setConsented] = useState(initialConsented);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -64,19 +63,8 @@ export default function ConfirmClient({
             <li>바우처카드를 꼭 지참해주세요.</li>
             <li>당일취소는 불가합니다.</li>
           </ol>
-          <div className="checkbox-row">
-            <input
-              id="consent"
-              type="checkbox"
-              checked={checked}
-              onChange={(e) => setChecked(e.target.checked)}
-            />
-            <label htmlFor="consent">
-              (필수) 상담 예약 확인 및 일정 관리 목적의 개인정보(이름, 상담일시) 수집·이용에 동의합니다.
-            </label>
-          </div>
           {error && <p className="error">{error}</p>}
-          <button onClick={handleConfirm} disabled={!checked || submitting}>
+          <button onClick={handleConfirm} disabled={submitting}>
             {submitting ? "처리 중..." : "예약 확인"}
           </button>
         </>

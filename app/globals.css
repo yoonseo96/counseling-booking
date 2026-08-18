@@ -185,23 +185,6 @@ a {
   color: var(--accent-hover);
 }
 
-.checkbox-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.checkbox-row input {
-  margin-top: 3px;
-  accent-color: var(--accent);
-}
-
-.checkbox-row label {
-  margin: 0;
-  font-size: 14px;
-  color: var(--text);
-}
 
 .notice-list {
   margin: 0;
