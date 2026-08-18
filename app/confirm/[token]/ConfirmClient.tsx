@@ -72,21 +72,26 @@ export default function ConfirmClient({
       <p>
         <strong>{name}</strong>님의 예약일정은 아래와 같습니다.
       </p>
-      <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 2 }}>{formatDateTime(sessionAt)}</p>
-      {location && <p className="muted" style={{ fontSize: 13, marginTop: 0 }}>{location}</p>}
+
+      <div className="schedule-box">
+        <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 2 }}>{formatDateTime(sessionAt)}</p>
+        {location && (
+          <p className="muted" style={{ fontSize: 13, margin: 0 }}>
+            {location}
+          </p>
+        )}
+        {consented && placeUrl && (
+          <p style={{ fontSize: 13, marginTop: 6, marginBottom: 0 }}>
+            <a href={placeUrl} target="_blank" rel="noopener noreferrer">
+              <PinIcon />
+              네이버 플레이스에서 위치 보기
+            </a>
+          </p>
+        )}
+      </div>
 
       {consented ? (
-        <>
-          <p style={{ fontSize: 16, fontWeight: 600 }}>예약 확인이 완료되었습니다. 감사합니다.</p>
-          {placeUrl && (
-            <p style={{ fontSize: 13, marginTop: 4 }}>
-              <a href={placeUrl} target="_blank" rel="noopener noreferrer">
-                <PinIcon />
-                네이버 플레이스에서 위치 보기
-              </a>
-            </p>
-          )}
-        </>
+        <p style={{ fontSize: 16, fontWeight: 600 }}>예약 확인이 완료되었습니다. 감사합니다.</p>
       ) : (
         <>
           <ol className="notice-list">

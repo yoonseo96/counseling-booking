@@ -152,6 +152,14 @@ button.danger:hover:not(:disabled) {
   color: var(--text);
 }
 
+.schedule-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 10px 0 16px;
+}
+
 .reservation-item {
   border-top: 1px solid var(--border);
   padding: 14px 0;
