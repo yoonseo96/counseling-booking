@@ -202,3 +202,80 @@ a {
   font-size: 14px;
   color: var(--text);
 }
+
+.notice-list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.notice-list li {
+  margin-bottom: 2px;
+}
+
+.notice-list strong {
+  color: var(--text);
+}
+
+.date-slider {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 2px 10px;
+  margin-bottom: 8px;
+}
+
+.date-chip {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 46px;
+  height: 56px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+}
+
+.date-chip.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.date-chip-dow {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.date-chip-day {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.date-chip-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.date-chip.active .date-chip-dot {
+  background: #fff;
+}
+
+.selected-date-heading {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 12px;
+}

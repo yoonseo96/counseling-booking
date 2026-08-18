@@ -60,7 +60,13 @@ export default function ConfirmClient({
         <p className="muted">확인이 완료되었습니다. 감사합니다.</p>
       ) : (
         <>
-          <p className="muted">예약 시간 6시간 전까지 미확인 시 예약이 취소될 수 있습니다.</p>
+          <ol className="notice-list">
+            <li>
+              <strong>바우처카드</strong>를 꼭 지참해주세요.
+            </li>
+            <li>당일취소는 불가합니다.</li>
+            <li>불참 시 하루전까지 꼭 연락주세요.</li>
+          </ol>
           <div className="checkbox-row">
             <input
               id="consent"
