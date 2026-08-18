@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { Reservation } from "@/lib/supabase";
+import { getSupabaseBrowserClient } from "@/lib/supabase-browser";
 
 function formatTime(iso: string) {
   const d = new Date(iso);
@@ -137,7 +138,8 @@ export default function AdminPage() {
   }
 
   async function handleLogout() {
-    await fetch("/api/admin/logout", { method: "POST" });
+    const supabase = getSupabaseBrowserClient();
+    await supabase.auth.signOut();
     router.push("/admin/login");
   }
 

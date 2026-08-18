@@ -1,56 +1,42 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { getSupabaseBrowserClient } from "@/lib/supabase-browser";
 
-export default function AdminLoginPage() {
-  const router = useRouter();
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+function LoginForm() {
+  const searchParams = useSearchParams();
+  const notAllowed = searchParams.get("error") === "not_allowed";
   const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleGoogleLogin() {
     setLoading(true);
-    setError("");
-
-    const res = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+    const supabase = getSupabaseBrowserClient();
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: `${window.location.origin}/auth/callback` },
     });
-
-    setLoading(false);
-
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      setError(data.error ?? "로그인에 실패했습니다.");
-      return;
-    }
-
-    router.push("/admin");
-    router.refresh();
   }
 
   return (
+    <div className="card">
+      <h1>관리자 로그인</h1>
+      {notAllowed && (
+        <p className="error">허용되지 않은 계정입니다. 관리자에게 문의해주세요.</p>
+      )}
+      <button onClick={handleGoogleLogin} disabled={loading}>
+        {loading ? "이동 중..." : "Google로 로그인"}
+      </button>
+    </div>
+  );
+}
+
+export default function AdminLoginPage() {
+  return (
     <div className="page">
-      <div className="card">
-        <h1>관리자 로그인</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="password">비밀번호</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoFocus
-          />
-          {error && <p className="error">{error}</p>}
-          <button type="submit" disabled={loading || !password}>
-            {loading ? "확인 중..." : "로그인"}
-          </button>
-        </form>
-      </div>
+      <Suspense fallback={<div className="card" />}>
+        <LoginForm />
+      </Suspense>
     </div>
   );
 }
