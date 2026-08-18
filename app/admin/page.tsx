@@ -43,7 +43,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const [sessionAt, setSessionAt] = useState("");
-  const [location, setLocation] = useState("범어역");
+  const [location, setLocation] = useState("시혜심리상담e연구소");
   const [memo, setMemo] = useState("");
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
