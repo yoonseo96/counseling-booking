@@ -14,6 +14,24 @@ function formatDateTime(iso: string) {
   });
 }
 
+function PinIcon() {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: "inline-block", verticalAlign: -2, marginRight: 4 }}
+    >
+      <path
+        d="M12 2C7.58 2 4 5.58 4 10c0 5.25 6.72 11.34 7.05 11.63a1.5 1.5 0 0 0 1.9 0C13.28 21.34 20 15.25 20 10c0-4.42-3.58-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+        fill="#03C75A"
+      />
+    </svg>
+  );
+}
+
 export default function ConfirmClient({
   token,
   name,
@@ -56,16 +74,19 @@ export default function ConfirmClient({
       </p>
       <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 2 }}>{formatDateTime(sessionAt)}</p>
       {location && <p className="muted" style={{ fontSize: 13, marginTop: 0 }}>{location}</p>}
-      {placeUrl && (
-        <p style={{ fontSize: 13, marginTop: 4 }}>
-          <a href={placeUrl} target="_blank" rel="noopener noreferrer">
-            🗺️ 네이버 플레이스에서 위치 보기
-          </a>
-        </p>
-      )}
 
       {consented ? (
-        <p style={{ fontSize: 16, fontWeight: 600 }}>예약 확인이 완료되었습니다. 감사합니다.</p>
+        <>
+          <p style={{ fontSize: 16, fontWeight: 600 }}>예약 확인이 완료되었습니다. 감사합니다.</p>
+          {placeUrl && (
+            <p style={{ fontSize: 13, marginTop: 4 }}>
+              <a href={placeUrl} target="_blank" rel="noopener noreferrer">
+                <PinIcon />
+                네이버 플레이스에서 위치 보기
+              </a>
+            </p>
+          )}
+        </>
       ) : (
         <>
           <ol className="notice-list">
