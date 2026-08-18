@@ -44,7 +44,7 @@ export default function AdminPage() {
   const [name, setName] = useState("");
   const [sessionAt, setSessionAt] = useState("");
   const [location, setLocation] = useState("시혜심리상담e연구소");
-  const [placeUrl, setPlaceUrl] = useState("");
+  const [placeUrl, setPlaceUrl] = useState("https://naver.me/5ssB2PSv");
   const [memo, setMemo] = useState("");
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
