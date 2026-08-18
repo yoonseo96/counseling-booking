@@ -64,8 +64,9 @@ export default function ConfirmClient({
             <li>
               <strong>바우처카드</strong>를 꼭 지참해주세요.
             </li>
-            <li>당일취소는 불가합니다.</li>
-            <li>불참 시 하루전까지 꼭 연락주세요.</li>
+            <li>
+              <strong>당일취소는 불가합니다.</strong>
+            </li>
           </ol>
           <div className="checkbox-row">
             <input

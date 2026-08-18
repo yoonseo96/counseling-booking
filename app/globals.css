@@ -273,6 +273,17 @@ a {
   background: #fff;
 }
 
+.date-month-label {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 0 2px;
+  white-space: nowrap;
+}
+
 .selected-date-heading {
   font-size: 14px;
   font-weight: 600;

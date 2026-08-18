@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { Fragment, useEffect, useState, useCallback, useRef } from "react";
 import { useRouter } from "next/navigation";
 import type { Reservation } from "@/lib/supabase";
 
@@ -198,22 +198,25 @@ export default function AdminPage() {
         <h2>예약 목록</h2>
 
         <div className="date-slider">
-          {dateRange.map((d) => {
+          {dateRange.map((d, i) => {
             const key = toDateKey(d);
             const hasReservations = reservations.some((r) => toDateKey(new Date(r.session_at)) === key);
             const isSelected = key === selectedDate;
+            const showMonthLabel = i === 0 || dateRange[i - 1].getMonth() !== d.getMonth();
             return (
-              <button
-                key={key}
-                type="button"
-                ref={isSelected ? selectedChipRef : undefined}
-                className={`date-chip ${isSelected ? "active" : ""}`}
-                onClick={() => setSelectedDate(key)}
-              >
-                <span className="date-chip-dow">{d.toLocaleDateString("ko-KR", { weekday: "short" })}</span>
-                <span className="date-chip-day">{d.getDate()}</span>
-                {hasReservations && <span className="date-chip-dot" />}
-              </button>
+              <Fragment key={key}>
+                {showMonthLabel && <div className="date-month-label">{d.getMonth() + 1}월</div>}
+                <button
+                  type="button"
+                  ref={isSelected ? selectedChipRef : undefined}
+                  className={`date-chip ${isSelected ? "active" : ""}`}
+                  onClick={() => setSelectedDate(key)}
+                >
+                  <span className="date-chip-dow">{d.toLocaleDateString("ko-KR", { weekday: "short" })}</span>
+                  <span className="date-chip-day">{d.getDate()}</span>
+                  {hasReservations && <span className="date-chip-dot" />}
+                </button>
+              </Fragment>
             );
           })}
         </div>
