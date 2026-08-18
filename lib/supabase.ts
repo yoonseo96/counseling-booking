@@ -20,6 +20,7 @@ export type Reservation = {
   name: string;
   session_at: string;
   location: string | null;
+  place_url: string | null;
   memo: string | null;
   status: "confirmed" | "cancelled";
   consented: boolean;

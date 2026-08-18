@@ -44,6 +44,7 @@ export default function AdminPage() {
   const [name, setName] = useState("");
   const [sessionAt, setSessionAt] = useState("");
   const [location, setLocation] = useState("시혜심리상담e연구소");
+  const [placeUrl, setPlaceUrl] = useState("");
   const [memo, setMemo] = useState("");
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
@@ -101,6 +102,7 @@ export default function AdminPage() {
         name,
         session_at: new Date(sessionAt).toISOString(),
         location,
+        place_url: placeUrl,
         memo,
       }),
     });
@@ -176,6 +178,15 @@ export default function AdminPage() {
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+          />
+
+          <label htmlFor="placeUrl">네이버 플레이스 주소 (선택)</label>
+          <input
+            id="placeUrl"
+            type="text"
+            placeholder="https://naver.me/..."
+            value={placeUrl}
+            onChange={(e) => setPlaceUrl(e.target.value)}
           />
 
           <label htmlFor="memo">메모 (선택, 고객에게 보이지 않음)</label>
@@ -255,6 +266,13 @@ export default function AdminPage() {
                     {formatTime(r.session_at)}
                     {r.location && ` · ${r.location}`}
                   </p>
+                  {r.place_url && (
+                    <p className="muted">
+                      <a href={r.place_url} target="_blank" rel="noopener noreferrer">
+                        네이버 플레이스 링크
+                      </a>
+                    </p>
+                  )}
                   {r.memo && <p className="muted">메모: {r.memo}</p>}
                   <div className="link-box">{`${typeof window !== "undefined" ? window.location.origin : ""}/confirm/${r.id}`}</div>
                   <div className="row">

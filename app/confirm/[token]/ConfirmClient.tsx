@@ -19,12 +19,14 @@ export default function ConfirmClient({
   name,
   sessionAt,
   location,
+  placeUrl,
   initialConsented,
 }: {
   token: string;
   name: string;
   sessionAt: string;
   location: string | null;
+  placeUrl: string | null;
   initialConsented: boolean;
 }) {
   const [consented, setConsented] = useState(initialConsented);
@@ -49,14 +51,19 @@ export default function ConfirmClient({
 
   return (
     <>
-      <p>
-        <strong>{name}</strong> 님, 아래 일정으로 상담이 예약되었습니다.
-      </p>
+      <h2>{name}님의 예약일정</h2>
       <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 2 }}>{formatDateTime(sessionAt)}</p>
       {location && <p className="muted" style={{ fontSize: 13, marginTop: 0 }}>{location}</p>}
+      {placeUrl && (
+        <p style={{ fontSize: 13, marginTop: 4 }}>
+          <a href={placeUrl} target="_blank" rel="noopener noreferrer">
+            네이버 플레이스에서 위치 보기
+          </a>
+        </p>
+      )}
 
       {consented ? (
-        <p className="muted">확인이 완료되었습니다. 감사합니다.</p>
+        <p className="muted">예약 확인이 완료되었습니다. 감사합니다.</p>
       ) : (
         <>
           <ol className="notice-list">

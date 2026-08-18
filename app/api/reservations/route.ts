@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
   const name = typeof body?.name === "string" ? body.name.trim() : "";
   const sessionAt = typeof body?.session_at === "string" ? body.session_at : "";
   const location = typeof body?.location === "string" ? body.location.trim() : "";
+  const placeUrl = typeof body?.place_url === "string" ? body.place_url.trim() : "";
   const memo = typeof body?.memo === "string" ? body.memo.trim() : "";
 
   if (!name || !sessionAt) {
@@ -40,6 +41,7 @@ export async function POST(req: NextRequest) {
       name,
       session_at: sessionAt,
       location: location || null,
+      place_url: placeUrl || null,
       memo: memo || null,
       created_by: createdBy,
     })
