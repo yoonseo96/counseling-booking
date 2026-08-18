@@ -74,14 +74,14 @@ export default function ConfirmClient({
       </p>
 
       <div className="schedule-box">
-        <p style={{ fontSize: 18, fontWeight: 600, marginBottom: 2 }}>{formatDateTime(sessionAt)}</p>
+        <p style={{ fontSize: 18, fontWeight: 600 }}>{formatDateTime(sessionAt)}</p>
         {location && (
-          <p className="muted" style={{ fontSize: 13, margin: 0 }}>
+          <p className="muted" style={{ fontSize: 13 }}>
             {location}
           </p>
         )}
         {consented && placeUrl && (
-          <p style={{ fontSize: 13, marginTop: 6, marginBottom: 0 }}>
+          <p style={{ fontSize: 13 }}>
             <a href={placeUrl} target="_blank" rel="noopener noreferrer">
               <PinIcon />
               네이버 플레이스에서 위치 보기
