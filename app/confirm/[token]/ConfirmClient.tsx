@@ -53,10 +53,16 @@ export default function ConfirmClient({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const cancellationNotice =
+  const noticeItems =
     createdBy === "이혜진"
-      ? "원활한 예약 운영을 위해 취소 및 변경은 하루 전까지 부탁드릴게요.♡"
-      : "당일취소는 불가합니다.";
+      ? ["바우처카드를 꼭 지참해주세요.", "원활한 예약 운영을 위해 취소 및 변경은 하루 전까지 부탁드릴게요.♡"]
+      : createdBy === "장나겸"
+        ? [
+            "바우처카드를 꼭 지참해주세요.",
+            "당일취소는 불가합니다.",
+            "예약 변경은 하루 전까지 부탁드립니다.",
+          ]
+        : ["바우처카드를 꼭 지참해주세요.", "당일취소는 불가합니다."];
 
   async function handleConfirm() {
     setSubmitting(true);
@@ -102,8 +108,9 @@ export default function ConfirmClient({
       ) : (
         <>
           <ol className="notice-list">
-            <li>바우처카드를 꼭 지참해주세요.</li>
-            <li>{cancellationNotice}</li>
+            {noticeItems.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
           </ol>
           {error && <p className="error">{error}</p>}
           <button onClick={handleConfirm} disabled={submitting}>
