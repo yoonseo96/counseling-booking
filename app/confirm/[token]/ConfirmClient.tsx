@@ -56,13 +56,7 @@ export default function ConfirmClient({
   const noticeItems =
     createdBy === "이혜진"
       ? ["바우처카드를 꼭 지참해주세요.", "원활한 예약 운영을 위해 취소 및 변경은 하루 전까지 부탁드릴게요.♡"]
-      : createdBy === "장나겸"
-        ? [
-            "바우처카드를 꼭 지참해주세요.",
-            "당일취소는 불가합니다.",
-            "예약 변경은 하루 전까지 부탁드립니다.",
-          ]
-        : ["바우처카드를 꼭 지참해주세요.", "당일취소는 불가합니다."];
+      : ["바우처카드를 꼭 지참해주세요.", "당일취소는 불가합니다."];
 
   async function handleConfirm() {
     setSubmitting(true);
