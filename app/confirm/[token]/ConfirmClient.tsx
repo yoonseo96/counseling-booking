@@ -38,6 +38,7 @@ export default function ConfirmClient({
   sessionAt,
   location,
   placeUrl,
+  createdBy,
   initialConsented,
 }: {
   token: string;
@@ -45,11 +46,17 @@ export default function ConfirmClient({
   sessionAt: string;
   location: string | null;
   placeUrl: string | null;
+  createdBy: string | null;
   initialConsented: boolean;
 }) {
   const [consented, setConsented] = useState(initialConsented);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+
+  const cancellationNotice =
+    createdBy === "이혜진"
+      ? "원활한 예약 운영을 위해 취소 및 변경은 하루 전까지 부탁드릴게요.♡"
+      : "당일취소는 불가합니다.";
 
   async function handleConfirm() {
     setSubmitting(true);
@@ -96,7 +103,7 @@ export default function ConfirmClient({
         <>
           <ol className="notice-list">
             <li>바우처카드를 꼭 지참해주세요.</li>
-            <li>당일취소는 불가합니다.</li>
+            <li>{cancellationNotice}</li>
           </ol>
           {error && <p className="error">{error}</p>}
           <button onClick={handleConfirm} disabled={submitting}>

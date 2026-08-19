@@ -15,7 +15,7 @@ export default async function ConfirmPage({ params }: { params: Promise<{ token:
   const supabase = getSupabaseServerClient();
   const { data: reservation } = await supabase
     .from("reservations")
-    .select("id, name, session_at, location, place_url, status, consented")
+    .select("id, name, session_at, location, place_url, status, consented, created_by")
     .eq("id", token)
     .single();
 
@@ -33,6 +33,7 @@ export default async function ConfirmPage({ params }: { params: Promise<{ token:
           sessionAt={reservation.session_at}
           location={reservation.location}
           placeUrl={reservation.place_url}
+          createdBy={reservation.created_by}
           initialConsented={reservation.consented}
         />
       </div>
